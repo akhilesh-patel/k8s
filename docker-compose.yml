@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_container
+    restart: always
+    working_dir: /var/www
+    ports:
+      - "9000:9000"
+    networks:
+      - my_bridge_network
+    env_file:
+      - ./env_config/laravel_env/.env  # ✅ Loads variables into the container
+    volumes:
+      - ./env_config/laravel_env/.env:/var/www/.env  # ✅ Mount .env file correctly
+
+  mysql:
+    image: mysql:8
+    container_name: mysql_container
+    restart: always
+    env_file:
+      - ./env_config/mysql_env/.env  # ✅ Loads MySQL env variables
+    ports:
+      - "3306:3306"
+    networks:
+      - my_bridge_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db_backup:/db_backup  # Backup directory for database dumps
+
+networks:
+  my_bridge_network:
+    driver: bridge
+volumes:
+  mysql_data:  # Persistent volume for MySQL

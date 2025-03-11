@@ -1,0 +1,47 @@
+# Ignore node modules and dependencies
+node_modules/
+./scan.txt
+./Dockerfile
+vendor/
+./k8s
+./db_backup
+docker-compose.yml
+# Ignore environment files (should not be in the image)
+.env
+.env.local
+.env.*.local
+.gitignore
+.dockerignore
+# Ignore build and cache files
+#storage/framework/cache/
+#storage/framework/sessions/
+#storage/framework/views/
+#s#torage/logs/
+#bootstrap/cache/
+
+# Ignore logs and temporary files
+*.log
+#*.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+#composer.lock
+
+# Ignore IDE and system-specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+
+
+# Ignore Docker-related files
+#docker-compose.yml
+
+#dockercompoe.yml
+#db_backup.sh
+#mysql_backup/
+#mysql_backups/
+#php.sh
+#dockercompoe.yml

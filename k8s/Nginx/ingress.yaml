@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-path-ingress
+  namespace: laravel-app
+spec:
+  rules:
+    - host: example.local
+      http:
+        paths:
+          - path: /         # Root URL -> Nginx service pe
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
+          - path: /name    # /api ke liye -> Laravel service pe
+            pathType: Prefix
+            backend:
+              service:
+                name: laravel   # ✅ Service name `laravel`
+                port:
+                  number: 9000
